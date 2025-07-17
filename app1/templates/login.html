@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Career Pathway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+      max-width: 800px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+      line-height: 1.5;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      color: white;
+      z-index: 2;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .container h2 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #ffffff33;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ffffff55;
+    }
+
+    a {
+      color: #eee;
+      font-size: 14px;
+      margin-top: 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      animation: rise 20s infinite ease-in;
+    }
+
+    .bubble:nth-child(1) { left: 10%; animation-duration: 12s; }
+    .bubble:nth-child(2) { left: 25%; animation-duration: 15s; }
+    .bubble:nth-child(3) { left: 40%; animation-duration: 10s; }
+    .bubble:nth-child(4) { left: 60%; animation-duration: 18s; }
+    .bubble:nth-child(5) { left: 80%; animation-duration: 16s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-1000px) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="title">
+    AI-Enhanced Career Guidance System for Personalized Career Pathways
+  </div>
+
+  <div class="container">
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+
+      <label for="{{ form.password.id_for_label }}">Password:</label>
+      {{ form.password }}
+
+      <button type="submit">Login</button>
+    </form>
+    <a href="{% url 'signup' %}">Don’t have an account? Sign up</a>
+  </div>
+</body>
+</html>
